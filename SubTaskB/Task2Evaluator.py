@@ -94,8 +94,6 @@ def evaluate_submission( submission_file, gold_labels ) :
      [ [ 'EN' ]      , [ 'fine_tune' ] ], 
      [ [ 'PT' ]      , [ 'fine_tune' ] ], 
      [ [ 'EN', 'PT' ], [ 'fine_tune' ] ], 
-
-     [ [ 'EN', 'PT' ], [ 'fine_tune', 'pre_train' ] ]
     ] : 
     corel_all, corel_sts, corel_no_sts = _score( submission_data, submission_headers, gold_data, gold_headers, languages, settings ) 
     this_entry         = [ ','.join( settings ), ','.join( languages), corel_all, corel_no_sts, corel_sts ] 
