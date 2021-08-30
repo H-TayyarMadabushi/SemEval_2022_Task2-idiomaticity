@@ -40,7 +40,7 @@ def _score( submission_data, submission_headers, gold_data, gold_headers, langua
     gold_labels_all.append( this_sim        )
     predictions_all.append( this_prediction )
 
-    if elem[ gold_headers.index( 'DataID' ) ].split( '.' )[1] == 'sts' :
+    if elem[ gold_headers.index( 'DataID' ) ].split( '.' )[2] == 'sts' :
       gold_labels_sts.append( this_sim        )
       predictions_sts.append( this_prediction )
     else : 
