@@ -22,15 +22,14 @@ def _score( submission_data, submission_headers, gold_data, gold_headers, langua
   filtered_submission_data = [ i for i in submission_data if i[ submission_headers.index( 'Language' ) ] in languages and i[ submission_headers.index( 'Setting' ) ] in settings ]
   if any( [ ( i[ submission_headers.index( 'Sim' ) ] == '' ) for i in filtered_submission_data ] ) : 
     return None, None, None
-  
+
   filtered_submission_dict = dict()
   for elem in filtered_submission_data : 
     filtered_submission_dict[ elem[ submission_headers.index( 'ID' ) ] ] = elem[ submission_headers.index( 'Sim' ) ]
 
   ## Generate gold 
   if len( settings ) > 1 : 
-    gold_data = gold_data + gold_data
-    assert len( languages ) == 2 
+    raise Exception( "This script does not work for multiple Settings (Submission IDs not unique)" )
   else : 
     gold_data = [ i for i in gold_data if i[ gold_headers.index( 'Language' ) ] in languages ]
 
@@ -59,7 +58,6 @@ def _score( submission_data, submission_headers, gold_data, gold_headers, langua
     else : 
       gold_labels_no_sts.append( this_sim        )
       predictions_no_sts.append( this_prediction )
-
 
   corel_all, pvalue    =  spearmanr(gold_labels_all   , predictions_all    ) 
   corel_sts, pvalue    =  spearmanr(gold_labels_sts   , predictions_sts    ) 
@@ -101,3 +99,16 @@ def evaluate_submission( submission_file, gold_labels ) :
 
   return output
 
+
+
+if __name__ == '__main__' :
+
+  import sys
+  
+  submission_file = sys.argv[1]
+  gold_labels     = sys.argv[2]
+  
+  results = evaluate_submission( submission_file, gold_labels )
+
+  for row in results :
+    print( "\t".join( [ str( i ) for i in row ] ) )
