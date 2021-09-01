@@ -1,7 +1,20 @@
 import sys
-
-from utils           import load_csv
+import csv
 from sklearn.metrics import f1_score
+
+def load_csv( path ) : 
+  header = None
+  data   = list()
+  with open( path, encoding='utf-8') as csvfile:
+    reader = csv.reader( csvfile ) 
+    for row in reader : 
+      if header is None : 
+        header = row
+        continue
+      data.append( row ) 
+  return header, data
+
+
 
 def _score( submission_data, submission_headers, gold_data, gold_headers, languages, settings )  :
 
