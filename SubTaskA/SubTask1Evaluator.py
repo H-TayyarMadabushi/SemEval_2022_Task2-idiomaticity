@@ -41,11 +41,9 @@ def _score( submission_data, submission_headers, gold_data, gold_headers, langua
 
   y_pred = [ int( i ) for i in y_pred ]
   y_true = [ int( i ) for i in y_true ]
-  f1_weighted = f1_score( y_true, y_pred, average='weighted' )
-  f1_micro    = f1_score( y_true, y_pred, average='micro'    )
-  f1_binary   = f1_score( y_true, y_pred, average='binary'   )
+  f1_macro    = f1_score( y_true, y_pred, average='macro' )
 
-  return f1_weighted, f1_micro, f1_binary
+  return f1_macro
 
 
 def evaluate_submission( submission_file, gold_labels ) :
@@ -73,8 +71,8 @@ def evaluate_submission( submission_file, gold_labels ) :
      [ [ 'EN', 'PT' ], [ 'one_shot'  ] ], 
 
     ] : 
-    f1_weighted, f1_micro, f1_binary = _score( submission_data, submission_headers, gold_data, gold_headers, languages, settings ) 
-    this_entry         = [ ','.join( settings ), ','.join( languages), f1_weighted, f1_micro, f1_binary ]
+    f1_macro = _score( submission_data, submission_headers, gold_data, gold_headers, languages, settings ) 
+    this_entry         = [ ','.join( settings ), ','.join( languages), f1_macro ]
     output.append( this_entry ) 
 
   return output
