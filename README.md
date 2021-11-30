@@ -15,6 +15,6 @@ Data for each Subtask consists of three data splits: "Training" (except in the p
 **IMPORTANT**: While we provide an "eval" split, this must not be confused with the "test" split that will be released in January.
 
 
-## Trail Data
-This repository also contains the Trail Data (aimed at providing participants with a clearer understanding of what to expect). It is a (very small) subset of the training data.
+## Trial Data
+This repository also contains the Trial Data (aimed at providing participants with a clearer understanding of what to expect). It is a (very small) subset of the training data.
 
